@@ -27,6 +27,16 @@ public class GenericSort {
 	}
 
 	/** Sort an array of comparable objects */
+	public static <E extends Comparable<E>> E min(ArrayList<E> list) {
+		E currentMin = list[0];
+		for (int i = 0; i < list.length; i++) {
+			if (currentMin.compareTo(list[i]) > 0) {
+				currentMin = list[i];
+			}
+		}
+		return currentMin;
+	}
+	
 	public static <E extends Comparable<E>> void sort(E[] list) {
 		E currentMin;
 		int currentMinIndex;
@@ -46,6 +56,21 @@ public class GenericSort {
 			if (currentMinIndex != i) {
 				list[currentMinIndex] = list[i];
 				list[i] = currentMin;
+			}
+		}
+	}
+	
+	public static <E> void shuffle(ArrayList<E> list) {
+		E currentMin;
+		int currentMinIndex;
+
+		for (int i = 0; i < list.length*10; i++) {
+			if(Math.random()*2>1) {
+				int a = (int) (Math.random()*list.length());
+				int b = (int) (Math.random()*list.length());
+				list[a]+=list[b];
+				list[b]=list[a]-list[b];
+				list[a]-=list[b];
 			}
 		}
 	}
