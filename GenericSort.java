@@ -1,5 +1,8 @@
 package Generics;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class GenericSort {
 	public static void main(String[] args) {
 // Create an Integer array
@@ -28,13 +31,8 @@ public class GenericSort {
 
 	/** Sort an array of comparable objects */
 	public static <E extends Comparable<E>> E min(ArrayList<E> list) {
-		E currentMin = list[0];
-		for (int i = 0; i < list.length; i++) {
-			if (currentMin.compareTo(list[i]) > 0) {
-				currentMin = list[i];
-			}
-		}
-		return currentMin;
+		sort(list);
+		return list.get(0);
 	}
 	
 	public static <E extends Comparable<E>> void sort(E[] list) {
@@ -42,7 +40,6 @@ public class GenericSort {
 		int currentMinIndex;
 
 		for (int i = 0; i < list.length - 1; i++) {
-// Find the minimum in the list[i+1..list.length−2]
 			currentMin = list[i];
 			currentMinIndex = i;
 			for (int j = i + 1; j < list.length; j++) {
@@ -60,17 +57,14 @@ public class GenericSort {
 		}
 	}
 	
+	
 	public static <E> void shuffle(ArrayList<E> list) {
-		E currentMin;
-		int currentMinIndex;
-
-		for (int i = 0; i < list.length*10; i++) {
+		
+		for (int i = 0; i < list.size() *10; i++) {
 			if(Math.random()*2>1) {
-				int a = (int) (Math.random()*list.length());
-				int b = (int) (Math.random()*list.length());
-				list[a]+=list[b];
-				list[b]=list[a]-list[b];
-				list[a]-=list[b];
+				int a = (int) (Math.random()*list.size());
+				int b = (int) (Math.random()*list.size());
+				Collections.swap(list, a, b);
 			}
 		}
 	}

@@ -1,34 +1,56 @@
 package Generics;
 
 public class Rectangle extends GeometricObject {
-	private double side1 = 1.0;
-	private double side2 = 1.0;
-	
+	private double side1;
+	private double side2;
+
 	public Rectangle() {
-		
 	}
 	
 	public Rectangle(double side1, double side2) {
 		this.side1 = side1;
 		this.side2 = side2;
 	}
-	
-	public double getSide1() {
+
+	public Rectangle(double side1, double side2, String color, boolean filled) {
+		this.side1 = side1;
+		this.side2 = side2;
+		setColor(color);
+		setFilled(filled);
+	}
+
+	/** Return side1 */
+	public double getside1() {
 		return side1;
 	}
-	public double getSide2() {
+
+	/** Set a new side1 */
+	public void setside1(double side1) {
+		this.side1 = side1;
+	}
+
+	/** Return side2 */
+	public double getside2() {
 		return side2;
 	}
-	
-	public double getPerimeter() {
-		return (side1+side2)*2;
+
+	/** Set a new side2 */
+	public void setside2(double side2) {
+		this.side2 = side2;
 	}
-	
+
+	/** Return area */
 	public double getArea() {
-		return side1*side2;
+		return side1 * side2;
+	}
+
+	/** Return perimeter */
+	public double getPerimeter() {
+		return 2 * (side1 + side2);
 	}
 	
-	public String print() {
-		return "Circle : Length = " + side1 + ", Width = " + side2 + ", Area = " + this.getArea() + ", Perimeter = " + this.getPerimeter();
+	public String toString() {
+		// return super.toString() + "\nside1 is " + side1 + "\nside2" + side2;
+		return "Area = " + getArea();
 	}
 }
